@@ -4,33 +4,58 @@
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 }
 
-<mat-dialog-content>
-  <div class="form-row">
+<form #userForm="ngForm">
+  <mat-dialog-content>
+    <div class="form-row">
+      <mat-form-field>
+        <mat-label>First name</mat-label>
+        <input matInput name="firstName" required [(ngModel)]="user.firstName" #firstName="ngModel" />
+        @if (firstName.invalid && firstName.touched) {
+          <mat-error>First name is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Last name</mat-label>
+        <input matInput name="lastName" required [(ngModel)]="user.lastName" #lastName="ngModel" />
+        @if (lastName.invalid && lastName.touched) {
+          <mat-error>Last name is required</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
     <mat-form-field>
-      <mat-label>First name</mat-label>
-      <input matInput [(ngModel)]="user.firstName" />
+      <mat-label>Birth date</mat-label>
+      <input
+        matInput
+        name="birthDate"
+        required
+        [matDatepicker]="birthdayPicker"
+        [(ngModel)]="birthDate"
+        #birthDateField="ngModel"
+      />
+      <mat-datepicker-toggle matIconSuffix [for]="birthdayPicker"></mat-datepicker-toggle>
+      <mat-datepicker #birthdayPicker></mat-datepicker>
+      @if (birthDateField.invalid && birthDateField.touched) {
+        <mat-error>Birth date is required</mat-error>
+      }
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Last name</mat-label>
-      <input matInput [(ngModel)]="user.lastName" />
+      <mat-label>Email</mat-label>
+      <input matInput type="email" name="email" required email [(ngModel)]="user.email" #email="ngModel" />
+      @if (email.invalid && email.touched) {
+        @if (email.errors?.['required']) {
+          <mat-error>Email is required</mat-error>
+        } @else {
+          <mat-error>Please enter a valid email address</mat-error>
+        }
+      }
     </mat-form-field>
-  </div>
+  </mat-dialog-content>
 
-  <mat-form-field>
-    <mat-label>Birth date</mat-label>
-    <input matInput [matDatepicker]="birthdayPicker" [(ngModel)]="birthDate" />
-    <mat-datepicker-toggle matIconSuffix [for]="birthdayPicker"></mat-datepicker-toggle>
-    <mat-datepicker #birthdayPicker></mat-datepicker>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Email</mat-label>
-    <input matInput type="email" [(ngModel)]="user.email" />
-  </mat-form-field>
-</mat-dialog-content>
-
-<mat-dialog-actions align="end">
-  <button mat-button (click)="onCancel()" [disabled]="loading">Cancel</button>
-  <button mat-flat-button (click)="saveUser()" [disabled]="loading">Save</button>
-</mat-dialog-actions>
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()" [disabled]="loading">Cancel</button>
+    <button mat-flat-button (click)="saveUser()" [disabled]="userForm.invalid || loading">Save</button>
+  </mat-dialog-actions>
+</form>
