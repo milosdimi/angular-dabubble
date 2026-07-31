@@ -1,63 +1,67 @@
 <h2 mat-dialog-title>Add User</h2>
 
+@if (loading) {
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+
 <mat-dialog-content>
-  <p>Hier Nutzer hinzufügen</p>
+  
 
   <div class="form-row">
     <mat-form-field>
       <mat-label>Vorname</mat-label>
-      <input matInput />
+      <input matInput [(ngModel)]="user.firstName" />
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Nachname</mat-label>
-      <input matInput />
+      <input matInput [(ngModel)]="user.lastName" />
     </mat-form-field>
   </div>
 
   <mat-form-field>
     <mat-label>Geburtstag</mat-label>
-    <input matInput [matDatepicker]="birthdayPicker" />
+    <input matInput [matDatepicker]="birthdayPicker" [(ngModel)]="birthDate" />
     <mat-datepicker-toggle matIconSuffix [for]="birthdayPicker"></mat-datepicker-toggle>
     <mat-datepicker #birthdayPicker></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>E-Mail</mat-label>
-    <input matInput type="email" />
+    <input matInput type="email" [(ngModel)]="user.email" />
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Telefon</mat-label>
-    <input matInput type="tel" />
+    <input matInput type="tel" [(ngModel)]="user.phone" />
   </mat-form-field>
 
   <div class="form-row">
     <mat-form-field>
       <mat-label>Straße</mat-label>
-      <input matInput />
+      <input matInput [(ngModel)]="user.street" />
     </mat-form-field>
 
     <mat-form-field class="form-field-small">
       <mat-label>Hausnummer</mat-label>
-      <input matInput />
+      <input matInput type="number" [(ngModel)]="user.houseNumber" />
     </mat-form-field>
   </div>
 
   <div class="form-row">
     <mat-form-field class="form-field-small">
       <mat-label>PLZ</mat-label>
-      <input matInput />
+      <input matInput type="number" [(ngModel)]="user.zipCode" />
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Ort</mat-label>
-      <input matInput />
+      <input matInput [(ngModel)]="user.city" />
     </mat-form-field>
   </div>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-flat-button (click)="onSave()">Save</button>
+  <button mat-button (click)="onCancel()" [disabled]="loading">Cancel</button>
+  <button mat-flat-button (click)="saveUser()" [disabled]="loading">Save</button>
 </mat-dialog-actions>
