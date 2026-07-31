@@ -1,0 +1,55 @@
+@if (loading()) {
+  <div class="loading-container">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+} @else {
+  <mat-card class="header-card" [style.background-color]="headerColor()">
+    <button mat-icon-button class="menu-trigger" [matMenuTriggerFor]="userMenu" aria-label="More actions">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item (click)="editUser()">
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+      <button mat-menu-item (click)="deleteUser()">
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+    </mat-menu>
+
+    <div class="header-content">
+      <div class="avatar">{{ initials() }}</div>
+      <div class="header-info">
+        <span class="header-name">{{ user().firstName }} {{ user().lastName }}</span>
+        <span class="header-email">{{ user().email }}</span>
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card class="info-card">
+    <button mat-icon-button class="menu-trigger" [matMenuTriggerFor]="addressMenu" aria-label="More actions">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #addressMenu="matMenu">
+      <button mat-menu-item (click)="editAddress()">
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+    </mat-menu>
+
+    <mat-card-header>
+      <mat-card-title>Contact &amp; Address</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="info-row">
+        <mat-icon>phone</mat-icon>
+        <span>{{ user().phone }}</span>
+      </div>
+      <div class="info-row">
+        <mat-icon>location_on</mat-icon>
+        <span>{{ user().street }} {{ user().houseNumber }}, {{ user().zipCode }} {{ user().city }}</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+}

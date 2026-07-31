@@ -3,3 +3,31 @@
   bottom: 56px;
   right: 56px;
 }
+
+mat-card {
+  margin: 24px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 0;
+}
+
+table {
+  width: 100%;
+}
+
+th[mat-header-cell] {
+  font-weight: 600;
+}
+
+tr[mat-row]:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+}

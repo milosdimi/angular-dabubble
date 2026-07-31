@@ -1,6 +1,7 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="side" class="sidenav">
     <mat-toolbar class="logo-toolbar">
+      <img src="img/logo.svg" alt="DABubble Logo" class="logo-img" />
       <span>DABubble</span>
     </mat-toolbar>
 
@@ -18,7 +19,7 @@
 
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button mat-icon-button (click)="sidenav.toggle()" aria-label="Menü öffnen/schließen">
+      <button mat-icon-button (click)="sidenav.toggle()" aria-label="Toggle menu">
         <mat-icon>menu</mat-icon>
       </button>
       <span>DABubble</span>
