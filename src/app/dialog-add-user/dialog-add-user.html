@@ -1,0 +1,63 @@
+<h2 mat-dialog-title>Add User</h2>
+
+<mat-dialog-content>
+  <p>Hier Nutzer hinzufügen</p>
+
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>Vorname</mat-label>
+      <input matInput />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Nachname</mat-label>
+      <input matInput />
+    </mat-form-field>
+  </div>
+
+  <mat-form-field>
+    <mat-label>Geburtstag</mat-label>
+    <input matInput [matDatepicker]="birthdayPicker" />
+    <mat-datepicker-toggle matIconSuffix [for]="birthdayPicker"></mat-datepicker-toggle>
+    <mat-datepicker #birthdayPicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>E-Mail</mat-label>
+    <input matInput type="email" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Telefon</mat-label>
+    <input matInput type="tel" />
+  </mat-form-field>
+
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>Straße</mat-label>
+      <input matInput />
+    </mat-form-field>
+
+    <mat-form-field class="form-field-small">
+      <mat-label>Hausnummer</mat-label>
+      <input matInput />
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field class="form-field-small">
+      <mat-label>PLZ</mat-label>
+      <input matInput />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Ort</mat-label>
+      <input matInput />
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-flat-button (click)="onSave()">Save</button>
+</mat-dialog-actions>
