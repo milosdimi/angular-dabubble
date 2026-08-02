@@ -2,10 +2,13 @@
   position: absolute;
   bottom: 56px;
   right: 56px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 mat-card {
   margin: 24px;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .table-wrapper {
@@ -25,9 +28,27 @@ table {
 
 th[mat-header-cell] {
   font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 60%, transparent);
+  background-color: color-mix(in srgb, var(--mat-sys-on-surface) 4%, transparent);
+}
+
+td[mat-cell],
+th[mat-header-cell] {
+  padding: 4px 16px;
+}
+
+tr[mat-row] {
+  transition: background-color 0.15s ease;
+}
+
+tr[mat-row]:nth-child(even) {
+  background-color: color-mix(in srgb, var(--mat-sys-on-surface) 3%, transparent);
 }
 
 tr[mat-row]:hover {
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: color-mix(in srgb, var(--mat-sys-on-surface) 8%, transparent);
   cursor: pointer;
 }

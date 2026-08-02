@@ -10,6 +10,13 @@
   min-height: 160px;
   margin: 24px;
   color: #ffffff;
+  border-radius: 20px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.header-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  transform: translateY(-2px);
 }
 
 .header-content {
@@ -53,6 +60,7 @@
 
 mat-card {
   margin: 24px;
+  border-radius: 20px;
 }
 
 .menu-trigger {
@@ -80,9 +88,9 @@ mat-card {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: rgba(0, 0, 0, 0.75);
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 80%, transparent);
 }
 
 .info-row mat-icon {
-  color: rgba(0, 0, 0, 0.5);
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 55%, transparent);
 }

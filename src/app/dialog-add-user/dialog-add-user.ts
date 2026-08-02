@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FormsModule } from '@angular/forms';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { User } from '../../models/user.class';
 
 @Component({
@@ -39,7 +39,10 @@ export class DialogAddUser {
     try {
       this.user.birthDate = this.birthDate.getTime();
       const firestore = getFirestore();
-      await addDoc(collection(firestore, 'users'), this.user.toJSON());
+      await addDoc(collection(firestore, 'users'), {
+        ...this.user.toJSON(),
+        createdAt: serverTimestamp(),
+      });
       this.dialogRef.close(this.user);
     } finally {
       this.loading = false;

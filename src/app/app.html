@@ -5,12 +5,14 @@
       <span>DABubble</span>
     </mat-toolbar>
 
+    <mat-divider></mat-divider>
+
     <mat-nav-list>
-      <a mat-list-item routerLink="/dashboard">
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link">
         <mat-icon matListItemIcon>dashboard</mat-icon>
         <span matListItemTitle>Dashboard</span>
       </a>
-      <a mat-list-item routerLink="/user">
+      <a mat-list-item routerLink="/user" routerLinkActive="active-link">
         <mat-icon matListItemIcon>person</mat-icon>
         <span matListItemTitle>User</span>
       </a>
@@ -23,6 +25,10 @@
         <mat-icon>menu</mat-icon>
       </button>
       <span>DABubble</span>
+      <span class="toolbar-spacer"></span>
+      <button mat-icon-button (click)="toggleTheme()" aria-label="Toggle dark mode">
+        <mat-icon>{{ darkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      </button>
     </mat-toolbar>
 
     <router-outlet />

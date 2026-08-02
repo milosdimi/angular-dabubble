@@ -1,1 +1,42 @@
-<p>dashboard works!</p>
+<div class="dashboard">
+  <div class="dashboard-header">
+    <h1>Dashboard</h1>
+    <p>Overview of your DABubble users</p>
+  </div>
+
+  <div class="dashboard-grid">
+    <mat-card class="stat-card">
+      <mat-icon class="stat-icon">group</mat-icon>
+      <div class="stat-value">{{ userCount() }}</div>
+      <div class="stat-label">Total Users</div>
+    </mat-card>
+
+    <mat-card class="recent-card">
+      <mat-card-header>
+        <mat-card-title>Recently Added</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        @if (recentUsers().length === 0) {
+          <p class="empty-hint">No users yet — add your first one.</p>
+        } @else {
+          @for (user of recentUsers(); track user.id) {
+            <div class="recent-row" (click)="openUser(user.id)">
+              <div class="mini-avatar">{{ initials(user) }}</div>
+              <div class="recent-info">
+                <span class="recent-name">{{ user.firstName }} {{ user.lastName }}</span>
+                <span class="recent-email">{{ user.email }}</span>
+              </div>
+            </div>
+          }
+        }
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="openAddUser()">
+          <mat-icon>add</mat-icon>
+          Add User
+        </button>
+        <button mat-button (click)="goToUsers()">View All</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
